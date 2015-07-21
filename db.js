@@ -1,5 +1,5 @@
 var pg = require('pg');
-var dbUrl = 'pg://localhost/forum'
+var dbUrl = 'pg://localhost/forum_db'
 
 module.exports = {
   end: function() {
@@ -23,27 +23,26 @@ module.exports = {
     });
     this.end();
   },
-  create: function(table, obj, cb) {
-    pg.connect(dbUrl, function(err, client, done) {
-      var keys = [];
-      var values = [];
-      var dollars = [];
-      Object.keys(obj).forEach(function(key, i) {
-        keys.push(key);
-        values.push(obj[keys[i]]);
-        dollars.push('$' + (i + 1));
-      })
-      var queryString = 'INSERT INTO ' + table + '(' + keys.join(',') + ') VALUES(' + dollars.join(',') + ')';
-      client.query(queryString, values, function(err, result) {
-        done();
-        if (err) {
-          console.error('error running query', err);
-        }
-        cb(result)
-      });
-    })
-    this.end();
-  },
+  create : function (table, obj, cb) {
+        pg.connect(dbUrl, function (err, client, done) {
+            var columns = [];
+            var values  = [];
+            var dollars = [];
+            Object.keys(obj).forEach(function (key, i) {
+                columns.push(key);
+                values.push(obj[columns[i]]);
+                dollars.push('$' + (i + 1));
+            });
+            client.query('INSERT INTO ' + table + '(' + columns.join(', ') + ') VALUES(' + dollars.join(', ') + ') RETURNING id AS id', values, function (err, result) {
+                done();
+                if(err){
+                  console.error(err)
+                }
+                cb(result.rows[0]);
+            });    
+        });
+        this.end();
+    },
   update: function(table, obj, id, cb) {
     pg.connect(dbUrl, function(err, client, done) {
       var keys = [];

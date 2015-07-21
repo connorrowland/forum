@@ -7,17 +7,19 @@ DROP TABLE IF EXISTS topics CASCADE;
 CREATE TABLE users(
   id SERIAL PRIMARY KEY, 
   name VARCHAR(255),
-  -- img_url TEXT, want to display user photo
+  img_url TEXT,
   location TEXT
+);
+CREATE TABLE topics(
+  id SERIAL PRIMARY KEY, 
+  name TEXT
 );
 
 CREATE TABLE posts(
   id SERIAL PRIMARY KEY, 
   post_name VARCHAR(255),
   body TEXT,
-  topic_id TEXT references topics,
+  user_id INTEGER references users,
+  topic_id INTEGER references topics,
   rating INTEGER
-);
-CREATE TABLE topics(
-  id SERIAL PRIMARY KEY, 
 );
