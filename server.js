@@ -29,6 +29,7 @@ app.use(methodOverride(function(req, res) {
 }));
 
 ///routes
+//get all posts and render on page
 app.get('/', function (req, res) {
   db.all('posts', function (data) {
     var post = {
@@ -37,12 +38,29 @@ app.get('/', function (req, res) {
     res.render('posts', post);
   });
 });
-
+///new post
 app.get('/newPost', function (req, res) {
   res.render('newPost');
 });
-app.post('/newUser', function (req, res){
-	db.create('users', req.body, function (data) {
-  		res.redirect('/');
- 	});
+app.post('/newPost', function (req, res){
+  db.create('posts', req.body, function (data) {
+      res.render('posts');
+      res.redirect('/')
+  });
+});
+//list of all users
+app.get('/users', function (req, res){
+  db.all('users', function (data) {
+    var user = {
+      users: data
+    }
+    res.render('users', user);
+  });
 })
+//add a comment
+app.post("/newComment/:id", function (req, res) {
+ db.update('posts', req.body, req.params.id, function (data) {
+   res.redirect('/')
+ })
+})
+

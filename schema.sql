@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS posts CASCADE;
-DROP TABLE IF EXISTS topics CASCADE;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS topics;
 
 
 
@@ -18,8 +18,8 @@ CREATE TABLE topics(
 CREATE TABLE posts(
   id SERIAL PRIMARY KEY, 
   post_name VARCHAR(255),
+  author VARCHAR(255),
   body TEXT,
-  user_id INTEGER references users,
-  topic_id INTEGER references topics,
-  rating INTEGER
+  rating INTEGER,
+  comments TEXT
 );

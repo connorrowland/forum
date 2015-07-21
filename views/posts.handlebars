@@ -1,13 +1,17 @@
 <div id="topicBoxes">
 	{{#each posts}}
-		<div class = "small-box" id = "{{post_name}}">
+		<div class = "small-box" id = "box">
 			<h2 class="innerText">{{post_name}}</h2>
 			<h3 class="innerText">Rating:{{rating}}/5</h3>
+			<h4 class="innerText">{{body}}</h4>
+			<h4 class="innerText">{{comments}}</h4>
+				<form id = "commentForm" action="/newComment" method="POST">
+					<input type="hidden" name="_method" value="PUT">
+					<label for="comments">Comment<br>
+						<textarea type="text" name="comments"></textarea><br>
+					</label><br>
+					<input type="submit" value="Submit">
+				</form>
 		</div>
 	{{/each}}
 </div>
-{{!-- {{#if "large-box"}} --}}
-	{{!-- <h2 class="innerText">{{post_name}}</h2>
-	<h3 class="innerText">Rating:{{rating}}/5</h3>
-	<h4 class="innerText">{{body}}</h3> --}}
-{{!-- {{/if}} --}}

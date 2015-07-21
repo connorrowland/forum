@@ -9,7 +9,7 @@ userPhotos = [
 postNames = ['French Fries', 'General Assembly' ]
 postBodies = ['French friez r soooo good i love them so much. If you luv french fries too rate this post with 5 starz! hah', 'General Assembly transforms thinkers into creators through education and opportunities in technology, business, and design.']
 ratings = [5, 4]
-variousTopics = ['Food', 'Politics','Educational','Media','Technology', 'Other...']
+comments = ['This is so dumb', 'thtz gr8']
 
 ///filling the schema w values
 var connor = {
@@ -30,15 +30,15 @@ var genAssemPost = {
 	post_name: postNames[0],
 	body: postBodies[0],
 	rating: ratings[0],
-	topic_id: 4,
-	user_id : 1
+	comments: comments[1],
+	author: userNames[1]
 }
 var frenchFryPost = {
 	post_name: postNames[1],
 	body: postBodies[1],
 	rating: ratings[1],
-	topic_id: 6,
-	user_id : 1
+	comments: comments[0],
+	author: userNames[0]
 }
 
 db.create('users', connor, function (data){
@@ -51,11 +51,11 @@ db.create('users', barack, function (data){
 	console.log("barack is created");
 });
 
-for(var i = 0; i < variousTopics.length; i++) {
-	db.create('topics', {name: variousTopics[i]}, function (data) {
-		console.log("topic " + variousTopics[i] + " has been created");
-	});
-};
+// for(var i = 0; i < variousTopics.length; i++) {
+// 	db.create('topics', {name: variousTopics[i]}, function (data) {
+// 		console.log("topic " + variousTopics[i] + " has been created");
+// 	});
+// };
 
 db.create('posts', genAssemPost, function (data){
 	console.log('genAssemPost created');
