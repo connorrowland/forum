@@ -38,8 +38,8 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/newTopic', function (req, res) {
-  res.render('newTopic');
+app.get('/newPost', function (req, res) {
+  res.render('newPost');
 });
 app.post('/newUser', function (req, res){
 	db.create('users', req.body, function (data) {
