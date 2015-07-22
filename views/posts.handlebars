@@ -1,11 +1,13 @@
 <div id="topicBoxes">
 	{{#each posts}}
 		<div class = "small-box" id = "box">
+			{{!-- <h1 class = "innerText">X</h1> --}}
 			<h2 class="innerText">{{post_name}}</h2>
-			<h3 class="innerText">Rating:{{rating}}/5</h3>
+			<h3 class="innerText">Author: {{author}}</h3>
+			<h3 class="innerText">Rating: {{rating}}/5</h3>
 			<h4 class="innerText">{{body}}</h4>
 			<h4 class="innerText">{{comments}}</h4>
-				<form id = "commentForm" action="/newComment" method="POST">
+				<form id = "commentForm" action="/newComment/{{id}}" method="POST">
 					<input type="hidden" name="_method" value="PUT">
 					<label for="comments">Comment<br>
 						<textarea type="text" name="comments"></textarea><br>

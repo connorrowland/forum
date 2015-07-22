@@ -13,7 +13,7 @@ nav{
   text-align: center;
   top: 210px;
   width: 250px;
-  height: 100%;
+  height: 2000px;
   float: left;
   background-color: #91cca9;
   border-radius: 5px;
@@ -229,6 +229,19 @@ nav{
   border: 2px solid #b4c1c4;
   border-radius: 5px;
   margin: 5px 5px 5px 5px;
+}
+.small-box h1{
+  visibility: hidden;
+}
+.large-box h1{
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  visibility: visible;
+  padding: 1px 1px 1px 1px;
+  border: 2px solid #b4c1c4;
+  border-radius: 5px;
+  margin: 1px 1px 1px 1px;
 }
 
 

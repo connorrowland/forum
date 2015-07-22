@@ -9,8 +9,8 @@ var path = require('path');
 var db = require('./db.js');
 
 
-// app.listen(3000);
-app.set('port', (process.env.PORT || 3000));
+app.listen(3000);
+// app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'), function (){
   console.log('App running on port : ', app.get('port'));
 });
@@ -48,7 +48,6 @@ app.get('/newPost', function (req, res) {
 });
 app.post('/newPost', function (req, res){
   db.create('posts', req.body, function (data) {
-      res.render('posts');
       res.redirect('/')
   });
 });
@@ -60,11 +59,10 @@ app.get('/users', function (req, res){
     }
     res.render('users', user);
   });
-})
+});
 //add a comment
-app.post("/newComment/:id", function (req, res) {
+app.put("/newComment/:id", function (req, res) {
  db.update('posts', req.body, req.params.id, function (data) {
-   res.redirect('/')
- })
-})
+  });
+});
 
